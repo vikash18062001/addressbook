@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{1B0C1993-06C0-4AE2-9529-05BBBFCA91B4}|https">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SimpleApplicationApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/vikash/Projects/SimpleApplicationApi/SimpleApplicationApi/Provider/Provider.cs" relfile="SimpleApplicationApi/Provider/Provider.cs" line="46" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SimpleApplicationApi/Provider/Provider.cs">
+    <Files>
+      <File FileName="SimpleApplicationApi/Provider/provider.cs" Line="55" Column="29" />
+      <File FileName="SimpleApplicationApi/Program.cs" />
+      <File FileName="SimpleApplicationApi/model/IProvider.cs" />
+      <File FileName="SimpleApplicationApi/appsettings.Development.json" />
+      <File FileName="SimpleApplicationApi/Controllers/PersonController.cs" />
+      <File FileName="SimpleApplicationApi/appsettings.json" />
+      <File FileName="SimpleApplicationApi/Properties/launchSettings.json" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SimpleApplicationApi" expanded="True">
+            <Node name="SimpleApplicationApi" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

@@ -1,0 +1,63 @@
+section {
+    .detail-component {
+        padding: 0 2rem;
+    }
+    .headers{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 23rem;
+        .user-name {
+            font-size: 2rem;
+        }
+    }
+
+    .buttons {
+        display: flex;
+    }
+
+    
+    .edit-btn {
+        background: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 0.8rem;
+            height: 1rem;
+            background-image: url("../../../public/Edit-icon.png");
+            background-repeat: no-repeat;
+            background-size: 0.8rem 1rem;
+            margin-right: 0.2rem;
+        }
+    }
+
+    .delete-btn {
+        background: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 0.8rem;
+            height: 1rem;
+            background-image: url("../../../public/delete1.png");
+            background-repeat: no-repeat;
+            background-size: 0.8rem 1rem;
+            margin-right: 0.2rem;
+        }
+    }
+
+    p,span{
+        font-weight: 300;
+    }
+
+    .phone{
+        display: flex;
+        flex-direction: column;
+    }
+}
