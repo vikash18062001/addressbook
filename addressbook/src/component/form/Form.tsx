@@ -109,6 +109,7 @@ class Form extends React.Component<FormProps, IFormState> {
             default:
                 break;
         }
+        
         this.setState({ errors: errors } as Pick<IFormState, keyof IFormState>)
     }
 
@@ -141,7 +142,7 @@ class Form extends React.Component<FormProps, IFormState> {
     render() {
         const { errors } = this.state;
         return (
-            <section>
+            <section className="form-container">
                 <div className="user-form">
                     <form action="">
                         <div className="close">
