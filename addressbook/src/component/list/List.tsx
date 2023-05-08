@@ -12,7 +12,6 @@ interface ListState {
 }
 
 class List extends React.Component<ListProps, ListState> {
-    // state = { :  }
     render() {
         return (
             <>

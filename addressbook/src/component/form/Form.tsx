@@ -1,12 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Person } from "../../model/Person";
-import Service from "../../service/service";
+import { addPerson, updatePerson } from "../store/action/person";
 import "./Form.scss"
 
 interface FormProps {
     toEdit: boolean;
     data: Person;
     isClose: any;
+    updatePerson: typeof updatePerson;
+    addPerson: typeof addPerson;
 }
 
 interface IFormState {
@@ -109,7 +112,7 @@ class Form extends React.Component<FormProps, IFormState> {
             default:
                 break;
         }
-        
+
         this.setState({ errors: errors } as Pick<IFormState, keyof IFormState>)
     }
 
@@ -126,9 +129,9 @@ class Form extends React.Component<FormProps, IFormState> {
         this.setState({ isFormValid: flag == 1 ? false : true }, () => {
             if (this.state.isFormValid) {
                 if (!this.props.toEdit) {
-                    Service.add(this.state)
+                    this.props.addPerson(this.state);
                 } else {
-                    Service.update(this.state);
+                    this.props.updatePerson(this.state);
                 }
                 this.closeForm();
             }
@@ -230,4 +233,5 @@ class Form extends React.Component<FormProps, IFormState> {
     }
 }
 
-export default Form;
+
+export default connect(null, { updatePerson, addPerson })(Form);

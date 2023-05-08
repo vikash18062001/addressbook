@@ -1,14 +1,18 @@
-import { timeStamp } from "console";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Person } from "../../model/Person";
-import Service from "../../service/service";
 import Detail from "../detail/Detail";
 import Form from "../form/Form";
 import List from "../list/List";
+import { addPerson, deletePerson, getAllPerson, updatePerson } from "../store/action/person";
+
 import "./Home.scss";
 
 interface HomeProps {
-
+    personState: any;
+    addPerson: typeof addPerson;
+    getAllPerson: typeof getAllPerson;
+    deletePerson: typeof deletePerson;
 }
 
 interface HomeState {
@@ -16,12 +20,9 @@ interface HomeState {
     showEditFormData: Person;
     showEditForm: boolean;
     showForm: boolean;
-    requestComplete : boolean;
-    allPersonData : any
 }
 
 class Home extends Component<HomeProps, HomeState> {
-    // state = { :  }
     person: Person = {} as Person;
     constructor(props: any) {
         super(props)
@@ -30,15 +31,11 @@ class Home extends Component<HomeProps, HomeState> {
             showForm: false,
             showEditForm: false,
             showEditFormData: this.person,
-            requestComplete : false,
-            allPersonData : []
         }
     }
 
     componentDidMount() {
-        Service.getAll().then((response)=>{
-            this.setState({allPersonData:response.data})
-        })
+        this.props.getAllPerson();
     }
 
     showDetail = (data: any) => {
@@ -55,19 +52,12 @@ class Home extends Component<HomeProps, HomeState> {
     }
 
     closeForm = () => {
-        this.setState({ showEditForm: false, showForm: false },()=>{
-            Service.getAll().then((response)=>{
-                this.setState({allPersonData:response.data,showData:this.person})
-            })
-        });
+        this.setState({ showEditForm: false, showForm: false, showData: {} as Person });
     }
 
     handleDelete = () => {
-        Service.delete(this.state.showData.id).then((response)=>{
-            Service.getAll().then((response)=>{
-                this.setState({allPersonData:response.data,showData:this.person})
-            })
-        });
+        this.props.deletePerson(this.state.showData.id);
+        this.setState({ showData: this.person })
     }
 
     render() {
@@ -82,15 +72,17 @@ class Home extends Component<HomeProps, HomeState> {
                             <a href="" className="nav-item">Home</a>
                             <a href="" className="nav-item" onClick={this.showForm}>+Add</a>
                         </div>
-                        <img src="../../../public/blog-icon.png" alt="not loading" />
+                        <img src={require("../../assets/blog-icon.png")} alt="not loading" />
                     </nav>
                     <div className="detail-container">
                         <div className="left-side">
                             <h3>CONTACTS</h3>
-                            {this.state.allPersonData.map((data: Person) => {
+                            {this.props.personState.persons && this.props.personState.persons.map((data: Person) => {
                                 return (
                                     <div onClick={() => this.showDetail(data)}>
-                                        <List data={data}></List>
+                                        <React.Fragment key={data.id} >
+                                            <List data={data}></List>
+                                        </React.Fragment>
                                     </div>
                                 )
                             })}
@@ -107,4 +99,12 @@ class Home extends Component<HomeProps, HomeState> {
     }
 }
 
-export default Home;
+function mapStateToProps(state: any) {
+    return {
+        personState: state.person
+    }
+}
+
+export default connect(mapStateToProps, { addPerson, getAllPerson, deletePerson, updatePerson })(Home);
+
+
